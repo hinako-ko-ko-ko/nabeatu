@@ -1,0 +1,67 @@
+//
+//  ViewController.swift
+//  Nabeatsu
+//
+//  Created by nagata on 2017/06/19.
+//  Copyright © 2017年 Life is Tech!. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+    
+    var number: Int = 0
+    @IBOutlet var countLabel: UILabel!
+    @IBOutlet var faceLabel: UILabel!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    func isAho() -> Bool {
+        var checkNum: Int = number
+        // 問題1: 3の倍数かどうか調べる
+        if (number % 3 == 0){
+            return true
+        }
+
+        // 問題4: 3がつくかどうか調べる
+        while(checkNum != 0){
+            if(checkNum % 10 == 3){
+                return true
+            }
+            checkNum = checkNum / 10
+        }
+        // 問題4をやるときは問題3と問題2の答えを消してから書こう
+        
+        return false
+    }
+    
+    func isgood() -> Bool {
+        // 問題1: 3の倍数かどうか調べる
+        if (number % 5 == 0){
+            return true
+        }
+
+        return false
+    }
+    
+    @IBAction func plusButton(){
+        number = number + 1
+        countLabel.text = String(number)
+        
+        //「3の倍数または3がつく数」かつ「5の倍数」
+        if (isAho() == true && isgood() == true){
+            faceLabel.text = "ﾍ(ﾟ∀ﾟﾍ)ｱﾋｬ(´・ω・)ｷﾘｯ"
+        }else if isAho() == true {//「3の倍数または3がつく数」
+            faceLabel.text = "ﾍ(ﾟ∀ﾟﾍ)ｱﾋｬ"
+        } else if (isgood() == true){//「5の倍数」
+            faceLabel.text = "(´・ω・)ｷﾘｯ"
+        }else{
+            faceLabel.text = "(゜o゜)"
+        }
+    }
+
+
+}
